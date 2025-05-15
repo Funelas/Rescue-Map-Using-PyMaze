@@ -18,7 +18,7 @@ title_lbl = ctk.CTkLabel(title_frame, fg_color="blue", text= "Rescue Map Locator
 
 buttons_frame = ctk.CTkFrame(menu_frame, fg_color="transparent", corner_radius=20, height = 200)
 start_button = ctk.CTkButton(buttons_frame, text= "Start", font=("Poppins", 25), command= lambda: change_screen(1))
-report_button = ctk.CTkButton(buttons_frame, text= "Report Traffic", font=("Poppins", 25))
+# report_button = ctk.CTkButton(buttons_frame, text= "Report Traffic", font=("Poppins", 25))
 
 title_frame.pack(fill="x", padx= 20, pady=(0,100))
 title_frame.pack_propagate(False)
@@ -26,8 +26,8 @@ title_lbl.pack(expand= True)
 
 buttons_frame.pack(fill="x", padx= 50)
 buttons_frame.pack_propagate(False)
-start_button.pack(fill= "x", padx= 10, pady= (0,50))
-report_button.pack(fill="x", padx= 10, pady= (0,50))
+start_button.pack(expand = True, fill="x", padx= 20)
+# report_button.pack(fill="x", padx= 10, pady= (0,50))
 menu_frame.pack_propagate(False)
 menu_frame.pack(expand= True)
 
