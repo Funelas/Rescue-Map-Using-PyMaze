@@ -1,5 +1,6 @@
 from pymaze import maze, agent, COLOR
 from collections import deque
+import customtkinter as ctk
 def BFS(m, start = (1,1), goal = (1,1)):
     frontier=[start]
     explored=[start]
@@ -23,27 +24,37 @@ def BFS(m, start = (1,1), goal = (1,1)):
                 frontier.append(childCell)
                 explored.append(childCell)
                 bfsPath[childCell]=currCell
+    else:
+        print("Path not found!")
     fwdPath={}
     cell=goal
+    print(bfsPath)
     while cell!=start:
         fwdPath[bfsPath[cell]]=cell
         cell=bfsPath[cell]
     return fwdPath
 
-
+hospital_coordinates = [(18,3), (15,7), (10,21), (25,22), (19,22), (11,27), (3,27), (19,29), (9,32), (24,33), (14,45), (30,46), (38,69)]
+police_coordinates = [(15,8), (28,12), (20,14), (13,15), (10,20), (13,22), (20,22), (23,23), (19,28), (6,31), (17,33), (20,40), (24,42), (3,49), (13,50), (10,62)]
+accidents_coordinates = [(27,16), (38,20), (14,32), (38,36), (31,46), (6,61), (22,61)]
 m = maze(40,70)
 # m.CreateMaze(loadMaze= "maze--2025-05-12--18-11-15.csv", x= 18, y= 3)
-m.CreateMaze(loadMaze="fixed_maze.csv", x=18, y=3)
-
-
+m.CreateMaze(loadMaze="maze--2025-05-12--18-11-15.csv", x= 26, y=22)
 sample_agent_pos = (27,16)
 sample_agent = agent(m, x= sample_agent_pos[0], y=sample_agent_pos[1], footprints=True)
-path = BFS(m,sample_agent_pos,(18,3))
+path = BFS(m,sample_agent_pos,(26, 22))
 m.tracePath({sample_agent: path})
+# for coord in hospital_coordinates:
+#     a = agent(m, x=coord[0], y=coord[1], footprints=True, color=COLOR.light)
+    # path = BFS(m, coord, (21,22))
+# # #     m.tracePath({a:path})
+# for coord in police_coordinates:
+#     a = agent(m, x=coord[0], y=coord[1], footprints=True, color=COLOR.red, filled= True)
+# #     path = BFS(m, coord, (21,22))
+# #     m.tracePath({a:path})
+# for coord in accidents_coordinates:
+#     a = agent(m, x=coord[0], y=coord[1], footprints=True, filled= True, color=COLOR.green)
+#     # path = BFS(m, coord, (21,22))
+#     # m.tracePath({a:path})
+
 m.run()
-# m = maze(5,5)
-# m.CreateMaze(loopPercent=100, x=2,y=3)
-# path = BFS(m, (2,3))
-# a = agent(m, footprints=True, x=2,y=5)
-# m.tracePath({a:path})
-# m.run()
