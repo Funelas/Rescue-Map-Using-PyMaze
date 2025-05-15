@@ -662,14 +662,14 @@ class maze:
                     if self.maze_map[cell]['S'] == False:
                         self._canvas.create_line(y_pix, x_pix + w, y_pix + w, x_pix + w, width=2, fill=theme.value[1], tag='line')
 
-                    # 👉 Draw coordinates in the center of the cell
-                    self._canvas.create_text(
-                        y_pix + w / 2,
-                        x_pix + w / 2,
-                        text=f"({x})",
-                        fill="gray",
-                        font=("Arial", int(w * 0.5))  # Auto-adjust font size
-                    )
+                    # # 👉 Draw coordinates in the center of the cell
+                    # self._canvas.create_text(
+                    #     y_pix + w / 2,
+                    #     x_pix + w / 2,
+                    #     text=f"({x})",
+                    #     fill="gray",
+                    #     font=("Arial", int(w * 0.5))  # Auto-adjust font size
+                    # )
 
 
     def _redrawCell(self,x,y,theme):
