@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from PIL import Image
 import threading
-from pymaze import maze, agent, COLOR
+from pymaze import maze, agent, COLOR, textLabel
 # === Configuration ===
 ctk.set_appearance_mode("System")  # Options: "Light", "Dark", "System"
 ctk.set_default_color_theme("blue")  # Options: "blue", "green", "dark-blue"
@@ -140,20 +140,20 @@ def run_maze_visualization(accident_coord, type_of_accident):
         agent_color = COLOR.red
 
     for coord in candidates:
-        path = BFS(m, coord, accident_coord)
+        path = BFS(m, accident_coord, coord)
         if path:  # path is not None
             if shortest_path is None or len(path) < len(shortest_path):
                 shortest_agent_coord = coord
                 shortest_path = path
-    # Visualize all candidate agents
-    for coord in candidates:
         a = agent(m, x=coord[0], y=coord[1], footprints=True, color=agent_color, filled=True)
+        
 
 
     sample_agent_pos = accident_coord
     sample_agent = agent(m, x= sample_agent_pos[0], y=sample_agent_pos[1], footprints=True, color= COLOR.green, filled= True)
     path = BFS(m,sample_agent_pos,shortest_agent_coord)
     m.tracePath({sample_agent: path})
+    l = textLabel(m,"Approximate Time of Arrival: ", f"{len(path)+1} minutes")
     m.run()
 
     
